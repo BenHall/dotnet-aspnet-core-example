@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HelloMvcApi
 {
     [Route("/")]
-    public class IndexController
+    public class IndexController : Controller
     {
         [HttpGet]
         public IActionResult Get()
