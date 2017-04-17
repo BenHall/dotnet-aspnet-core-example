@@ -1,11 +1,14 @@
-FROM microsoft/dotnet:1.0.0-preview2-sdk
+FROM microsoft/dotnet:1.1-sdk
 
-RUN mkdir /app
 WORKDIR /app
-COPY project.json /app
-RUN ["dotnet", "restore"]
-COPY . /app
-RUN ["dotnet", "build"]
 
-EXPOSE 5000/tcp
-CMD ["dotnet", "run"]
+# copy csproj and restore as distinct layers
+COPY dotnetapp.csproj .
+RUN dotnet restore
+
+# copy and build everything else
+COPY . .
+RUN dotnet publish -c Release -o out
+
+CMD ["dotnet", "out/dotnetapp.dll"]
+
