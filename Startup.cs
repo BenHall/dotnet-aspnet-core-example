@@ -30,7 +30,7 @@ namespace dotnetapp
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Request processed by @ " + System.Environment.MachineName);
+                await context.Response.WriteAsync("[v1.1] Request processed by @ " + System.Environment.MachineName);
             });
         }
     }
